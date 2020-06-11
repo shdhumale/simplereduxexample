@@ -8,13 +8,13 @@ const myReducer = (state = initialState, action) => {
     if (action.type === 'increment') {
         //as in react we do not directly modify the state without setState here we will do it by
         //creating copy of the state using spread operators
-        newState.counter = newState.counter + 1
+        newState.counter = newState.counter + action.val
     }
 
     if (action.type === 'decrement') {
         //as in react we do not directly modify the state without setState here we will do it by
         //creating copy of the state using spread operators
-        newState.counter = newState.counter - 1
+        newState.counter = newState.counter - action.val
     }
     return newState
 }
@@ -24,7 +24,7 @@ store.subscribe(() => {
     console.log("Notified automatically that state is changed:- " + JSON.stringify(store.getState()))
 })
 //console.log(store.getState())
-store.dispatch({ type: 'increment' })
+store.dispatch({ type: 'increment', val: 10 })
 //console.log(store.getState())
-store.dispatch({ type: 'decrement' })
+store.dispatch({ type: 'decrement', val: 10 })
 //console.log(store.getState())
